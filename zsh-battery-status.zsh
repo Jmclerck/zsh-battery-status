@@ -1,4 +1,4 @@
-function battery() {
+function battery_status() {
   local state=$(pmset -g batt)
   local charging=$(echo $state | rg -o "\scharg[ing|ed]")
   local discharging=$(echo $state | rg -o "\sdischarging")
