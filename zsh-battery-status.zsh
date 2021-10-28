@@ -1,22 +1,16 @@
 function battery_status_charging() {
   local time=$(echo $state | grep -o "[0-9]:[0-9]*")
-  
-  NEXT_BATTERY_STATUS=" "
 
   if [[ $time != "0:00" ]]; then
-    NEXT_BATTERY_STATUS="$NEXT_BATTERY_STATUS$time"
+    NEXT_BATTERY_STATUS="$time"
   fi
 }
 
 function battery_status_discharging() {
-  local icons=(     )
   local percentage=$(echo $state | grep -o "[0-9]*%" | grep -o "[0-9]*")
-  local segment=$(( ($percentage + 20 - 1) / 20 ))
 
-  NEXT_BATTERY_STATUS="${icons[$segment]}"
-  
   if [[ $percentage != "100" ]]; then
-    NEXT_BATTERY_STATUS="${icons[$segment]} $percentage%%"
+    NEXT_BATTERY_STATUS="$percentage%%"
   fi
 }
 
